@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
+import { addPost } from '../../actions/postActions';
 
 class PostForm extends Component {
   constructor(props) {
@@ -8,6 +11,31 @@ class PostForm extends Component {
       text: '',
       errors: {}
     };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.errors !== this.state.errors) {
+      this.setState({ errors: newProps.errors });
+    }
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const newPost = {
+      text: this.state.text
+    };
+
+    this.props.addPost(newPost);
+    //fix -> text: '', errors: {}
+    this.setState({ text: '', errors: {} });
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
@@ -38,4 +66,15 @@ class PostForm extends Component {
   }
 }
 
-export default PostForm;
+PostForm.propTypes = {
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { addPost }
+)(PostForm);
