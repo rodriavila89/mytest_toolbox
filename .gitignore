@@ -1,4 +1,7 @@
+#Env
+.env
+
 /node_modules
 package-lock.json
 /.project
-/config/keys_dev.js
+/config/key_dev.js

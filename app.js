@@ -1,3 +1,5 @@
+require('dotenv').config('');
+
 var createError = require('http-errors');
 var express = require('express');
 var mongoose = require('mongoose');
@@ -25,7 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //mongodb config
-const db = require('./config/keys').mongoURI;
+const db = process.env.MONGO_URI;
 
 //connect to mongodb
 mongoose
