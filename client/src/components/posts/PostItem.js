@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 class PostItem extends Component {
   render() {
-    const { post, auth, showActions } = this.props;
+    const { post, showActions } = this.props;
 
     return (
       <div className="card card-body mb-3">

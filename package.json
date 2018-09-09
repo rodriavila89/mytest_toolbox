@@ -7,7 +7,8 @@
     "start": "node ./bin/www",
     "server": "nodemon ./bin/www",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "NODE_ENV=test mocha --timeout 10000"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -23,6 +24,12 @@
     "validator": "^10.7.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.4"
+    "chai": "^4.1.2",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.4",
+    "supertest": "^3.3.0"
   }
 }
